@@ -51,13 +51,28 @@ export async function POST(req: Request) {
         inputs:`Language:[${language}]Resume:[${resume}]Job:[${job}]`,
     });
     
-    const response = conversation.outputs?.[0]?.content ?? "";
+    let response = conversation.outputs?.[0]?.content ?? "";
+    response = stripCodeFence(response);
+    console.log(response);
+
+    function stripCodeFence(input: string): string {
+        const t = input.trim();
+        const m = t.match(/^```(?:[a-zA-Z0-9_+-]+)?\r?\n?([\s\S]*?)\r?\n?```\s*$/);
+        return m ? m[1] : t;
+    }
 
     const texPath = path.join("/tmp", "resume.tex");
     const pdfPath = path.join("/tmp", "resume.pdf");
     fs.writeFileSync(texPath, response, "utf-8");
+
     
-    execSync(`pdflatex -interaction=nonstopmode -output-directory=/tmp ${texPath}`)
+    try {
+      execSync(`pdflatex -interaction=nonstopmode -output-directory=/tmp ${texPath}`, { stdio: "inherit" });
+    } catch (err: any) {
+      console.error("pdflatex failed:", err.stdout?.toString());
+      console.error("stderr:", err.stderr?.toString());
+      throw err;
+    }
     
     const pdf = fs.readFileSync(pdfPath);
 
