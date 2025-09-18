@@ -10,18 +10,51 @@ import { Toaster, toast} from "react-hot-toast"
 
 export default function Home() {
     return (
-        <div className="flex h-screen w-screen items-center justify-center">
-            <ResumeInput/>
+        <div>
+            <div className="flex flex-col h-screen w-screen bet items-center">
+                <Header/>
+                <ResumeInput/>
+            </div>
         </div>
     );
 }
 
+function Header(){
+    return (
+    <div className="w-full h-15 border-4">
+    </div>
+    )
+}
 
 function ResumeInput() {
     const [job, setJob] = useState("");
     const [resume, setResume] = useState("");
     const [url, setUrl] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+
+    const showToastError = async (message: string) => {
+        toast.error(message, {
+            style: {
+                background: "var(--card)",
+                color: "var(--secondary-foreground)",
+                border: "4px solid var(--border)",
+                borderRadius: "var(--radius)",
+                fontFamily: "var(--font-sans)",
+            },
+        });
+    }
+
+    const showToastSuccess = async (message: string) => {
+        toast.success(message, {
+            style: {
+                background: "var(--card)",
+                color: "var(--secondary-foreground)",
+                border: "4px solid var(--border)",
+                borderRadius: "var(--radius)",
+                fontFamily: "var(--font-sans)",
+            },
+        });
+    }
 
     const Generate = async () => {
         setIsLoading(true);
@@ -40,52 +73,59 @@ function ResumeInput() {
             });
 
             if (!response.ok) {
-              const err = await response.json().catch(() => ({}));
-              toast.error(err?.error ?? `Erreur ${response.status}`);
-              return;
+                const err = await response.json().catch(() => ({}));
+                showToastError(err?.error ?? `Erreur ${response.status}`)
+                return;
             }
 
             const blob = await response.blob();
-            toast.success('Resume successfully generated');
+            showToastSuccess('Resume successfully generated');
 
             if (url) { URL.revokeObjectURL(url) }
             setUrl(window.URL.createObjectURL(blob));
         } catch {
-            toast.error('Network error');
+            showToastError('Network error');
         } finally {
             setIsLoading(false);
         }
     };
 
     return (
-        <>
+        <div className="flex flex-col bg-[var(--background)]">
             <div><Toaster/></div>
+            <div className="mb-[1em]">
+            <h1 className="text-3xl font-bold">Resumake</h1>
+            <p className="text-muted-foreground">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
             <form 
                 onSubmit={ (e) => {
                     if (!e.currentTarget.checkValidity()){
                         e.preventDefault();
-                        toast.error("Please fill out all required fields correctly.");
+                        showToastError('Please fill out all required fields correctly.')
                     } else {
                         e.preventDefault();
                         Generate();
                     }
                 }}
                 noValidate
-                className="flex flex-col w-[500px] gap-6 p-8 border rounded-md"
+                className="flex flex-col w-[500px] gap-6 p-8 border-5 rounded-md bg-[var(--card)]"
             >
-                <Label>Offer Link</Label>
-                <Input
-                    type="url"
-                    value={job}  
-                    onChange={(e) => {setJob(e.target.value)}} 
-                    id="link" 
-                    placeholder="https://exemple.com/job" 
-                    required
-                />
+                <div className="flex h-full flex-col gap-2">
+                    <Label>Offer Link</Label>
+                    <Input
+                        className="bg-[var(--secondary)]"
+                        type="url"
+                        value={job}  
+                        onChange={(e) => {setJob(e.target.value)}} 
+                        id="link" 
+                        placeholder="https://exemple.com/job" 
+                        required
+                    />
+                </div>
                 <div className="flex h-full flex-col gap-2">
                     <Label>Resume text</Label>
                     <Textarea 
-                        className="h-[550px]"
+                        className="h-[550px] mb-[0.5em] bg-[var(--secondary)] border-4"
                         value={resume}
                         onChange={(e) => {setResume(e.target.value)}} 
                         placeholder="My name is..., previous jobs: ... previous projects:..." 
@@ -107,7 +147,7 @@ function ResumeInput() {
                     )}
                 </div>
             </form>
-        </>
+        </div>
     );
 }
 
