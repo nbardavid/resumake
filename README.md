@@ -19,8 +19,10 @@ Paste a job offer link, add your resume text, and get a tailored LaTeX-compiled 
 ## Notes
 
 - This project depends on **private Mistral agents**.  
-- Even with a Mistral API key, it cannot be run locally.  
+  Even with a Mistral API key, it cannot be run locally.  
 - Please use the hosted version: [resumake.nbardavid.dev](https://resumake.nbardavid.dev).  
+- Some job sites require login or use anti-scraping protections.  
+  In those cases, the job description cannot be retrieved automatically.  
 
 ---
 
