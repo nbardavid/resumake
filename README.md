@@ -1,49 +1,34 @@
 # resumake
 
-**resumake** is a web application that generates a tailored **resume in PDF format** directly from a job posting.  
-It analyzes a job description, adapts your existing resume with AI, and outputs a polished LaTeX-generated PDF.
+**resumake** generates a customized PDF resume from a job posting.  
+Paste a job offer link, add your resume text, and get a tailored LaTeX-compiled PDF in seconds.
 
-🌐 Live demo: [resumake.nbardavid.dev](https://resumake.nbardavid.dev)
-
----
-
-## ✨ Features
-
-- 🔗 Paste a job offer URL – the job description is automatically parsed.
-- 🤖 Powered by [Mistral AI](https://mistral.ai) to adapt your resume to the role.
-- 📄 Converts AI output into LaTeX and compiles it into a downloadable PDF.
-- 🎨 Modern, responsive interface with [shadcn/ui](https://ui.shadcn.com) and Tailwind CSS.
-- 🐳 Fully containerized with Docker and Traefik for deployment.
+🔗 Live demo: [resumake.nbardavid.dev](https://resumake.nbardavid.dev)
 
 ---
 
-## 🛠️ Tech Stack
+## How it works
 
-- [Next.js 15](https://nextjs.org) (App Router)  
-- [Tailwind CSS](https://tailwindcss.com) + [shadcn/ui](https://ui.shadcn.com)  
-- [Mistral AI SDK](https://www.npmjs.com/package/@mistralai/mistralai)  
-- [Mozilla Readability](https://github.com/mozilla/readability) & [JSDOM](https://github.com/jsdom/jsdom)  
-- [TeX Live](https://tug.org/texlive/) for PDF generation  
-
----
-
-## 📸 Screenshots
-
-*(Add screenshots or GIFs of the app here — form input, loading state, generated PDF, etc.)*
+- Extracts text from job postings using [Mozilla Readability](https://github.com/mozilla/readability).  
+- Uses a private [Mistral](https://mistral.ai) agent to adapt your resume to the job description.  
+- Converts the result into LaTeX and compiles it into a downloadable PDF.  
+- Runs as a self-hosted Next.js app with Docker and Traefik.  
 
 ---
 
-## 📜 About this project
+## Notes
 
-This project is self-hosted and requires private API keys for AI and PDF generation.  
-It is available to try at the live demo link above, but is **not intended to be run locally without additional credentials**.
+- This project depends on **private Mistral agents**.  
+- Even with a Mistral API key, it cannot be run locally.  
+- Please use the hosted version: [resumake.nbardavid.dev](https://resumake.nbardavid.dev).  
 
 ---
 
-## 🙌 Credits
+## Stack
 
 - [Next.js](https://nextjs.org)  
-- [Mistral AI](https://mistral.ai)  
-- [shadcn/ui](https://ui.shadcn.com)  
+- [Tailwind CSS](https://tailwindcss.com) + [shadcn/ui](https://ui.shadcn.com)  
+- [Mistral AI SDK](https://www.npmjs.com/package/@mistralai/mistralai)  
 - [TeX Live](https://tug.org/texlive/)  
 
+---
