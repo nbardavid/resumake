@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  resume-maker:
+    build: .
+    container_name: resumake
+    env_file: .env
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.resumake.rule=Host(`resumake.nbardavid.dev`)"
+      - "traefik.http.services.resumake.loadbalancer.server.port=3000"
+      - "traefik.http.routers.resumake.entrypoints=http"
+      - "traefik.http.routers.resumake-secure.entrypoints=https"
+      - "traefik.http.routers.resumake-secure.rule=Host(`resumake.nbardavid.dev`)"
+      - "traefik.http.routers.resumake-secure.tls=true"
+      - "traefik.http.routers.resumake-secure.tls.certresolver=cloudflare"
+
+networks:
+  proxy:
+    external: true
