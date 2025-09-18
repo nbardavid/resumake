@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# resumake
 
-## Getting Started
+**resumake** is a web application that generates a tailored **resume in PDF format** directly from a job posting.  
+It analyzes a job description, adapts your existing resume with AI, and outputs a polished LaTeX-generated PDF.
 
-First, run the development server:
+🌐 Live demo: [resumake.nbardavid.dev](https://resumake.nbardavid.dev)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 🔗 Paste a job offer URL – the job description is automatically parsed.
+- 🤖 Powered by [Mistral AI](https://mistral.ai) to adapt your resume to the role.
+- 📄 Converts AI output into LaTeX and compiles it into a downloadable PDF.
+- 🎨 Modern, responsive interface with [shadcn/ui](https://ui.shadcn.com) and Tailwind CSS.
+- 🐳 Fully containerized with Docker and Traefik for deployment.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- [Next.js 15](https://nextjs.org) (App Router)  
+- [Tailwind CSS](https://tailwindcss.com) + [shadcn/ui](https://ui.shadcn.com)  
+- [Mistral AI SDK](https://www.npmjs.com/package/@mistralai/mistralai)  
+- [Mozilla Readability](https://github.com/mozilla/readability) & [JSDOM](https://github.com/jsdom/jsdom)  
+- [TeX Live](https://tug.org/texlive/) for PDF generation  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📸 Screenshots
 
-## Deploy on Vercel
+*(Add screenshots or GIFs of the app here — form input, loading state, generated PDF, etc.)*
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📜 About this project
+
+This project is self-hosted and requires private API keys for AI and PDF generation.  
+It is available to try at the live demo link above, but is **not intended to be run locally without additional credentials**.
+
+---
+
+## 🙌 Credits
+
+- [Next.js](https://nextjs.org)  
+- [Mistral AI](https://mistral.ai)  
+- [shadcn/ui](https://ui.shadcn.com)  
+- [TeX Live](https://tug.org/texlive/)  
+
