@@ -181,7 +181,7 @@ function ResumeInput() {
                 <div className="flex h-full w-full flex-col gap-2">
                     <Label className="font-bold"> Resume text</Label>
                     <Textarea 
-                        className="clicky-focus h-full min-h-[200px] mb-[0.5em] bg-[var(--secondary)] border-4"
+                        className="clicky-focus w-[500px] h-[200px] box-border min-h-[200px] mb-[0.5em] bg-[var(--secondary)] border-4"
                         value={resume}
                         onChange={(e) => {setResume(e.target.value)}} 
                         placeholder="My name is..., previous jobs: ... previous projects:..." 

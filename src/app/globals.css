@@ -8,7 +8,7 @@
         @apply transition-all duration-200 active:translate-y-1 active:translate-x-1 active:shadow-none;
     }
     .clicky-focus {
-        @apply transition-all duration-200 focus:translate-y-1 focus:translate-x-1 focus:shadow-none;
+      @apply transition-all duration-200 focus:translate-y-1 focus:translate-x-1 focus:shadow-none;
     }
     .clicky-on {
         @apply transition-all duration-200 translate-y-1 translate-x-1 shadow-none;
