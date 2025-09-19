@@ -3,6 +3,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@layer utilities {
+    .clicky-active {
+        @apply transition-all duration-200 active:translate-y-1 active:translate-x-1 active:shadow-none;
+    }
+    .clicky-focus {
+        @apply transition-all duration-200 focus:translate-y-1 focus:translate-x-1 focus:shadow-none;
+    }
+}
+
 :root {
   --background: oklch(0.9885 0.0057 74.5659);
   --foreground: oklch(0.2170 0.0086 59.1838);

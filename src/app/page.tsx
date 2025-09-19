@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Button} from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Input } from "@/components/ui/input"
@@ -11,9 +11,11 @@ import { Toaster, toast} from "react-hot-toast"
 export default function Home() {
     return (
         <div>
-            <div className="flex flex-col h-screen w-screen bet items-center">
+            <div className="flex flex-col h-screen w-screen items-center">
                 <Header/>
-                <ResumeInput/>
+                <div className="flex flex-col h-full justify-center items-center w-full">
+                    <ResumeInput/>
+                </div>
             </div>
         </div>
     );
@@ -21,10 +23,16 @@ export default function Home() {
 
 function Header(){
     return (
-    <div className="w-full h-15 border-4">
-    </div>
+        <div className="flex px-10 w-full h-15 place-content-between items-center border-b-4">
+            <h1 className="text-3xl font-bold">Resumake</h1>
+            <div className="flex gap-1">
+                <img src="/github-mark.svg" className="w-5 h-5" />
+                <a href="https://github.com/nbardavid/resume-maker" className="hover-lift text-l"> GitHub </a>
+            </div>
+        </div>
     )
 }
+
 
 function ResumeInput() {
     const [job, setJob] = useState("");
@@ -79,12 +87,12 @@ function ResumeInput() {
             }
 
             const blob = await response.blob();
-            showToastSuccess('Resume successfully generated');
+            showToastSuccess("Resume successfully generated");
 
             if (url) { URL.revokeObjectURL(url) }
             setUrl(window.URL.createObjectURL(blob));
         } catch {
-            showToastError('Network error');
+            showToastError("Network error");
         } finally {
             setIsLoading(false);
         }
@@ -94,26 +102,26 @@ function ResumeInput() {
         <div className="flex flex-col bg-[var(--background)]">
             <div><Toaster/></div>
             <div className="mb-[1em]">
-            <h1 className="text-3xl font-bold">Resumake</h1>
-            <p className="text-muted-foreground">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h1 className="text-6xl font-bold">Resumes made easy</h1>
+            <p className="text-lg text-muted-foreground italic">Your resume, always aligned with the role.</p>
             </div>
             <form 
                 onSubmit={ (e) => {
                     if (!e.currentTarget.checkValidity()){
                         e.preventDefault();
-                        showToastError('Please fill out all required fields correctly.')
+                        showToastError("Please fill out all required fields correctly.")
                     } else {
                         e.preventDefault();
                         Generate();
                     }
                 }}
                 noValidate
-                className="flex flex-col w-[500px] gap-6 p-8 border-5 rounded-md bg-[var(--card)]"
+                className="flex flex-col w-full gap-6 p-8 border-5 rounded-md bg-[var(--card)]"
             >
-                <div className="flex h-full flex-col gap-2">
-                    <Label>Offer Link</Label>
+                <div className="flex h-full w-full flex-col gap-2">
+                    <Label className="font-bold"> Offer Link</Label>
                     <Input
-                        className="bg-[var(--secondary)]"
+                        className="clicky-focus bg-[var(--secondary)]"
                         type="url"
                         value={job}  
                         onChange={(e) => {setJob(e.target.value)}} 
@@ -123,9 +131,9 @@ function ResumeInput() {
                     />
                 </div>
                 <div className="flex h-full flex-col gap-2">
-                    <Label>Resume text</Label>
+                    <Label className="font-bold"> Resume text</Label>
                     <Textarea 
-                        className="h-[550px] mb-[0.5em] bg-[var(--secondary)] border-4"
+                        className="clicky-focus h-full min-h-[200px] mb-[0.5em] bg-[var(--secondary)] border-4"
                         value={resume}
                         onChange={(e) => {setResume(e.target.value)}} 
                         placeholder="My name is..., previous jobs: ... previous projects:..." 
