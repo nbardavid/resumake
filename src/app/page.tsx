@@ -33,11 +33,11 @@ function Header(){
     )
 }
 
-
 function ResumeInput() {
     const [job, setJob] = useState("");
     const [resume, setResume] = useState("");
     const [url, setUrl] = useState("");
+    const [selected, setSelected] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
     const showToastError = async (message: string) => {
@@ -98,6 +98,54 @@ function ResumeInput() {
         }
     };
 
+    const fillInputsWeb= async () => {
+        setSelected("web")
+        setJob(EXAMPLE_JOB);
+        setResume(EXAMPLE_RESUME_WEB)
+    }
+
+    const fillInputsLowLevel = async () => {
+        setSelected("low-level");
+        setJob(EXAMPLE_JOB);
+        setResume(EXAMPLE_RESUME_LOW)
+    }
+    
+    function TestsButtons(){
+        return (
+            <div className="flex h-full w-full flex-col gap-2">
+                <Label className="Try these examples"> Try these examples</Label>
+                <div className="flex w-full gap-3">
+
+                    { (selected === "low-level" &&
+                        <Button 
+                            type="button"
+                            className="glow clicky-on">
+                            low-level
+                        </Button>) ||
+                        <Button
+                            type="button"
+                            onClick={fillInputsLowLevel}
+                            className="bg-[var(--card-background)] shadow-sm clicky-active hover:bg-[rgba(255,240,100,1)]"
+                        > low-level </Button>
+                    }
+
+                    { (selected === "web" &&
+                        <Button 
+                            type="button"
+                            className="glow clicky-on">
+                            web eng
+                        </Button>) ||
+                        <Button
+                            type="button"
+                            onClick={fillInputsWeb}
+                            className="bg-[var(--card-background)] shadow-sm clicky-active  hover:bg-[rgba(255,240,100,1)]"
+                        > web eng </Button>
+                    }
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className="flex flex-col bg-[var(--background)]">
             <div><Toaster/></div>
@@ -130,7 +178,7 @@ function ResumeInput() {
                         required
                     />
                 </div>
-                <div className="flex h-full flex-col gap-2">
+                <div className="flex h-full w-full flex-col gap-2">
                     <Label className="font-bold"> Resume text</Label>
                     <Textarea 
                         className="clicky-focus h-full min-h-[200px] mb-[0.5em] bg-[var(--secondary)] border-4"
@@ -139,23 +187,121 @@ function ResumeInput() {
                         placeholder="My name is..., previous jobs: ... previous projects:..." 
                         required
                     />
+                </div>
+
+                    <TestsButtons/>
 
                     { (isLoading &&
-                        <Button disabled>
+                        <Button disabled className="h-15 clicky-on">
                             <Loader2Icon className="animate-spin" />
                             Please wait
                         </Button>) || 
-                        <Button type="submit">Generate</Button>
+                        <Button type="submit" className="h-15 shadow-sm clicky-active">Generate</Button>
                     }
 
                     {url && (
-                        <Button asChild>
+                        <Button 
+                        className="shadow-sm clicky-active bg-[var(--accent)] hover:bg-[var(--accent-hover)]"
+                        asChild>
                             <a href={url} download="resume.pdf">Download resume.pdf</a>
                         </Button>
                     )}
-                </div>
             </form>
         </div>
     );
 }
 
+const EXAMPLE_JOB="https://jobs.lever.co/mistral/a6980b07-e55a-427c-a985-38ecd1e2eea6"
+const EXAMPLE_RESUME_LOW= `Nathan Bardavid
+Low-Level & UNIX Systems Engineer - C - C++ - Zig
+example@gmail.com — +33 6 01 23 45 67 — Paris
+
+Profile:
+Student at 42 Paris focused on low-level and UNIX systems. Builds robust system tools in C and Zig,
+with strong command of POSIX primitives, parsing, and process supervision.
+
+Skills:
+Proficiency: C, C++, Zig, JavaScript, TypeScript, Go, Docker
+Backend: Python (FastAPI), Go (Gin)
+Tooling: Bash, Git, Docker
+
+Projects:
+42sh - POSIX-compliant Shell (C)
+Sep 2024–Feb 2025 — Team of 2
+Constraints: C only, POSIX system calls (man 2) and malloc.
+- Delivered a POSIX-compliant command interpreter compatible with Bash scripts.
+- Built a regex engine in C for pattern matching across shell features.
+- Reimplemented readline-like line editing and history from scratch.
+- Implemented a resilient parser handling shell grammar and edge cases.
+
+Taskmaster - Process Supervisor (Zig)
+Mar–May 2025 — Solo project
+Constraint: standard Zig library only.
+- Implemented hot reload of configuration without restarting the supervisor.
+- Built a CLI with history and line editing for operator efficiency.
+-  Designed process lifecycle controls: launch, stop, restart, restart policies, expected exit codes,
+timeouts, custom signals.
+- Added fine-grained monitoring and local event logging (start, stop, crash, reload).
+
+Education:
+Master’s Degree in Computer Architecture - 42 Paris Sep 2023 - Jun 2027
+Coursework and projects in systems/software engineering.
+General Baccalaureate 2022
+Specialties: NSI & Mathematics
+
+Languages:
+French (native)
+English (technical/conversational)
+
+Interests:
+Self-hosting on Debian mini-server (personal services, websites...); advanced customization of environments
+(OS, Neovim)
+`
+const EXAMPLE_RESUME_WEB=`Robin Retayeur
+Web Engineer - TypeScript - React - Node.js
+obin.retayeur@example.com — +33 6 98 76 54 32 — Paris
+
+Profile:
+Web engineer passionate about building scalable frontends and reliable backends.
+Currently at Alan, delivering secure, user-friendly web experiences in healthcare.  
+Strong focus on TypeScript, React, and system design for high-traffic applications.
+
+Skills:
+Frontend: TypeScript, React, Next.js, Tailwind, Redux
+Backend: Node.js (Express, NestJS), Go (Gin)
+Tooling: Docker, GitHub Actions, Vite, PostgreSQL
+Other: GraphQL, REST API design, testing (Jest, Cypress)
+
+Experience:
+Alan — Web Engineer
+Sep 2024–Present — Paris
+- Developed and maintained core user-facing web applications for members and HR teams.  
+- Designed reusable React component libraries with accessibility and performance in mind.  
+- Optimized API interactions, reducing load times by 30% across the dashboard.  
+- Collaborated with designers, PMs, and security engineers to ship healthcare-compliant features.
+
+Projects:
+HabitFlow — Habit Tracker (React, Node.js)
+Feb–Jun 2024 — Solo project  
+- Built a full-stack app with React + Tailwind frontend and a Node.js + PostgreSQL backend.  
+- Implemented calendar-based habit visualization with charts and reminders.  
+- Added JWT authentication and real-time sync via WebSockets.
+
+Sharely — Collaborative Docs (Next.js, Go)
+Oct–Dec 2023 — Team of 3  
+- Built a collaborative Markdown editor with real-time updates using WebSockets.  
+- Designed a Go backend with optimistic concurrency control for versioning.  
+- Integrated with cloud storage for persistent backups.
+
+Education:
+Master’s Degree in Computer Science — 42 Paris  
+Sep 2022 – Jun 2026 — Focus on software engineering & web systems.  
+General Baccalaureate 2022  
+Specialties: Mathematics & Physics
+
+Languages:
+French (native)  
+English (fluent)
+
+Interests:
+Frontend performance optimization, self-hosting, open-source contribution, Neovim customization.`
