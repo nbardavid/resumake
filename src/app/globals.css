@@ -16,8 +16,10 @@
     .glow {
         @apply shadow-[0_0_30px_10px_rgba(255,255,50,0.7)] bg-[rgba(255,255,100,1)]
     }
+    .highlight-hover {
+        @apply bg-[linear-gradient(to_right,#FFFFFF_50%,#FFB96B_50%)] [background-size:200%_100%] [background-position:0_0] transition-[background-position] ease-out duration-500 hover:[background-position:-100%_0]
+    }
 }
-
 
 :root {
   --background: oklch(0.9885 0.0057 74.5659);

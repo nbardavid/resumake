@@ -78,8 +78,16 @@ export function ResumeInput() {
         <div className="flex flex-col w-[700px] bg-[var(--background)]">
             <div><Toaster/></div>
             <div className="mb-[1em]">
-            <h1 className="text-6xl font-bold">Resumes made easy</h1>
-            <p className="text-lg text-muted-foreground italic">Your resume, always aligned with the role.</p>
+                <div className="flex flex-col gap-2">
+                    <h1 className="text-6xl font-bold">
+                        <span className="highlight-hover">Resumes </span>
+                        <span className="highlight-hover">made </span>
+                        <span className="highlight-hover">easy</span>
+                    </h1>
+                    <p className="text-lg text-muted-foreground italic">
+                        Your resume, always aligned with the role.
+                    </p>
+                </div>
             </div>
             <form 
                 onSubmit={ (e) => {
