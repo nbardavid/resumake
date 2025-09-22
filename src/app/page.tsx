@@ -147,7 +147,7 @@ function ResumeInput() {
     }
 
     return (
-        <div className="flex flex-col w-[590px] bg-[var(--background)]">
+        <div className="flex flex-col w-[700px] bg-[var(--background)]">
             <div><Toaster/></div>
             <div className="mb-[1em]">
             <h1 className="text-6xl font-bold">Resumes made easy</h1>
