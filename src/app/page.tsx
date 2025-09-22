@@ -147,7 +147,7 @@ function ResumeInput() {
     }
 
     return (
-        <div className="flex flex-col bg-[var(--background)]">
+        <div className="flex flex-col w-[590px] bg-[var(--background)]">
             <div><Toaster/></div>
             <div className="mb-[1em]">
             <h1 className="text-6xl font-bold">Resumes made easy</h1>
@@ -164,7 +164,7 @@ function ResumeInput() {
                     }
                 }}
                 noValidate
-                className="flex flex-col w-full gap-6 p-8 border-5 rounded-md bg-[var(--card)]"
+                className="flex flex-col w-[100%] gap-6 p-8 border-5 rounded-md bg-[var(--card)]"
             >
                 <div className="flex h-full w-full flex-col gap-2">
                     <Label className="font-bold"> Offer Link</Label>
@@ -181,7 +181,7 @@ function ResumeInput() {
                 <div className="flex h-full w-full flex-col gap-2">
                     <Label className="font-bold"> Resume text</Label>
                     <Textarea 
-                        className="clicky-focus w-[500px] h-[200px] box-border min-h-[200px] mb-[0.5em] bg-[var(--secondary)] border-4"
+                        className="resize-none clicky-focus w-full h-[200px] box-border min-h-[200px] mb-[0.5em] bg-[var(--secondary)] border-4"
                         value={resume}
                         onChange={(e) => {setResume(e.target.value)}} 
                         placeholder="My name is..., previous jobs: ... previous projects:..." 
