@@ -46,7 +46,7 @@ Self-hosting on Debian mini-server (personal services, websites...); advanced cu
 `
 export const EXAMPLE_RESUME_WEB=`Robin Retayeur
 Web Engineer - TypeScript - React - Node.js
-obin.retayeur@example.com — +33 6 98 76 54 32 — Paris
+robin.retayeur@example.com — +33 6 98 76 54 32 — Paris
 
 Profile:
 Web engineer passionate about building scalable frontends and reliable backends.
@@ -68,17 +68,18 @@ Sep 2024–Present — Paris
 - Collaborated with designers, PMs, and security engineers to ship healthcare-compliant features.
 
 Projects:
+PicksProno — Social Betting App (Ruby on Rails, React)
+Jun–Aug 2024 — Solo project
+- Built a web platform for friendly bets on Olympic Games matches with a Ruby on Rails backend and React frontend.
+- Scaled the application to successfully handle 300,000 active users during the 2024 Olympics.
+- Implemented leaderboard, friend groups, and match result updates in real time.
+
 HabitFlow — Habit Tracker (React, Node.js)
 Feb–Jun 2024 — Solo project  
 - Built a full-stack app with React + Tailwind frontend and a Node.js + PostgreSQL backend.  
 - Implemented calendar-based habit visualization with charts and reminders.  
 - Added JWT authentication and real-time sync via WebSockets.
 
-Sharely — Collaborative Docs (Next.js, Go)
-Oct–Dec 2023 — Team of 3  
-- Built a collaborative Markdown editor with real-time updates using WebSockets.  
-- Designed a Go backend with optimistic concurrency control for versioning.  
-- Integrated with cloud storage for persistent backups.
 
 Education:
 Master’s Degree in Computer Science — 42 Paris  
