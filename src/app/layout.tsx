@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Remake",
+  title: "Resumake",
   description: "Resume made easy",
 };
 
